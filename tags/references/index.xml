@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>References on Blog</title>
-    <link>https://dachiefjustice.github.io/tags/references/</link>
+    <link>https://jroberts.io/tags/references/</link>
     <description>Recent content in References on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 02 Apr 2018 22:28:30 +0000</lastBuildDate>
     
-	<atom:link href="https://dachiefjustice.github.io/tags/references/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jroberts.io/tags/references/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Container Security Part V</title>
-      <link>https://dachiefjustice.github.io/post/containersec-links/</link>
+      <link>https://jroberts.io/post/containersec-links/</link>
       <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
       
-      <guid>https://dachiefjustice.github.io/post/containersec-links/</guid>
+      <guid>https://jroberts.io/post/containersec-links/</guid>
       <description>This is the fifth post in a series on container security. Check out the first post for context and links to the rest of the series.
 Want to go deeper on container security? Check out the links below.
 Docker Security Links  Docker&amp;rsquo;s security documentation Docker&amp;rsquo;s security best practices focusing on Docker Enterprise Edition Docker&amp;rsquo;s reference architectures are a collection of reference architectures/design patterns, demonstrating best practices for a variety of use cases Docker seccomp lab GDS Security&amp;rsquo;s Docker Secure Deployment Guidelines, a checklist for securing Docker deployments Docker Bench for Security is a script (and container) that checks Docker deployments against a variety of security best practices  Kubernetes Security Links K8s is a popular container orchestration platform, here are some handy links for securing it.</description>
