@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Blog</title>
+    <link>https://johnroberts.gitlab.io/tags/</link>
+    <description>Recent content in Tags on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 Apr 2018 00:36:10 +0000</lastBuildDate>
+    
+	<atom:link href="https://johnroberts.gitlab.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Application Security</title>
+      <link>https://johnroberts.gitlab.io/tags/application-security/</link>
+      <pubDate>Fri, 06 Apr 2018 00:36:10 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/application-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://johnroberts.gitlab.io/tags/best-practices/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/best-practices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud Security</title>
+      <link>https://johnroberts.gitlab.io/tags/cloud-security/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/cloud-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Container Security</title>
+      <link>https://johnroberts.gitlab.io/tags/container-security/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/container-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Containerization</title>
+      <link>https://johnroberts.gitlab.io/tags/containerization/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/containerization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://johnroberts.gitlab.io/tags/docker/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infrastructure Security</title>
+      <link>https://johnroberts.gitlab.io/tags/infrastructure-security/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/infrastructure-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://johnroberts.gitlab.io/tags/links/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/links/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>References</title>
+      <link>https://johnroberts.gitlab.io/tags/references/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/references/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security Automation</title>
+      <link>https://johnroberts.gitlab.io/tags/security-automation/</link>
+      <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/security-automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Strategy</title>
+      <link>https://johnroberts.gitlab.io/tags/strategy/</link>
+      <pubDate>Fri, 06 Apr 2018 00:36:10 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/strategy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Threat Modeling</title>
+      <link>https://johnroberts.gitlab.io/tags/threat-modeling/</link>
+      <pubDate>Fri, 06 Apr 2018 00:36:10 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/tags/threat-modeling/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

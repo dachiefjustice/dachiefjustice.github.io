@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/threat-modeling/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/containersec-links/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/containersec-p4/</loc>
+    <lastmod>2018-04-02T00:52:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/containersec-p3/</loc>
+    <lastmod>2018-04-02T00:52:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/containersec-p2/</loc>
+    <lastmod>2018-04-02T00:52:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/bio/</loc>
+    <lastmod>2018-03-26T16:27:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/containersec-background/</loc>
+    <lastmod>2018-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/appsec-strategy/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/application-security/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/best-practices/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/cloud-security/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/container-security/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/containerization/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/docker/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/infrastructure-security/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/links/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/post/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/references/</loc>
+    <lastmod>2018-04-02T22:28:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/security-automation/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/strategy/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://johnroberts.gitlab.io/tags/threat-modeling/</loc>
+    <lastmod>2018-04-06T00:36:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

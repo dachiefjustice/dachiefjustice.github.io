@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Strategy on Blog</title>
+    <link>https://johnroberts.gitlab.io/tags/strategy/</link>
+    <description>Recent content in Strategy on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 Apr 2018 00:36:10 +0000</lastBuildDate>
+    
+	<atom:link href="https://johnroberts.gitlab.io/tags/strategy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AppSec Threat Modeling</title>
+      <link>https://johnroberts.gitlab.io/post/threat-modeling/</link>
+      <pubDate>Fri, 06 Apr 2018 00:36:10 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/threat-modeling/</guid>
+      <description>Threat modeling underpins risk-based application security. What is threat modeling? According to TechTarget:
+ Threat modeling is a procedure for optimizing network security by identifying objectives and vulnerabilities, and then defining countermeasures to prevent, or mitigate the effects of, threats to the system.
+ That definition emphasizes network security. The concept applies to other kinds of security &amp;ndash; application, infrastructure, physical, etc.
+Why does threat modeling matter? It grounds security in technical and business risk.</description>
+    </item>
+    
+    <item>
+      <title>AppSec Strategy</title>
+      <link>https://johnroberts.gitlab.io/post/appsec-strategy/</link>
+      <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/appsec-strategy/</guid>
+      <description>Application security teams face a daunting challenge: finding and fixing security issues across their application portfolio, based on risk. Application portfolios tend to grow over time through acquisitions, partnerships, and in response to evolving business needs. New app development, COTS app deployment, and SaaS app/service adoption also expand the portfolio.
+Manual security efforts such as penetration testing, code review, and design analysis are a great start, but scale poorly across large application portfolios.</description>
+    </item>
+    
+  </channel>
+</rss>

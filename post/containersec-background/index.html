@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Container Security Part I</title>
+  <meta property="og:title" content="Container Security Part I" />
+  <meta name="twitter:title" content="Container Security Part I" />
+  <meta name="description" content="Background">
+  <meta property="og:description" content="Background">
+  <meta name="twitter:description" content="Background">
+  <meta name="author" content="John Roberts"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@dachiefjustice" />
+  <meta name="twitter:creator" content="@dachiefjustice" />
+  <meta property="og:url" content="https://johnroberts.gitlab.io/post/containersec-background/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blog" />
+
+  <meta name="generator" content="Hugo 0.37.1" />
+  <link rel="canonical" href="https://johnroberts.gitlab.io/post/containersec-background/" />
+  <link rel="alternate" href="https://johnroberts.gitlab.io/index.xml" type="application/rss+xml" title="Blog">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/katex.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/highlight.min.css" /><link rel="stylesheet" href="https://johnroberts.gitlab.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://johnroberts.gitlab.io/css/photoswipe.min.css">
+<link rel="stylesheet" href="https://johnroberts.gitlab.io/css/default-skin.min.css">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-117120619-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://johnroberts.gitlab.io/">Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Writing" href="/post">Writing</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Bio" href="/bio">Bio</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="ArctaSec" href="https://arctasec.com">ArctaSec</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Container Security Part I</h1>
+                
+                  
+                    <h2 class="post-subheading">Background</h2>
+                  
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 26, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (478 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<p>Containerization has exploded in popularity across the tech scene in recent years, driven by Docker and container orchestration platforms like Kubernetes. Containers are a natural fit for microservice-based applications and for CI/CD² pipeline tasks. They power event-driven function-as-a-service (&ldquo;serverless&rdquo;) platforms like AWS Lambda and Apache OpenWhisk.</p>
+
+<p>Containerization offers substantial <a href="https://cloud.google.com/containers/">benefits</a>, much <a href="https://dzone.com/articles/5-key-benefits-docker-ci">discussed</a> across <a href="https://www.aquasec.com/wiki/display/containers/Advantages+of+Containers">the tech world</a>. Avoiding vendor lock-in, environment consistency, application portability, rapid deployment/scaling, deployment density &ndash; a range of business and technical benefits is likely to drive continued adoption.</p>
+
+<p>With growing adoption, application and infrastructure security teams need to secure their containers (and the surrounding ecosystem). Container security is a broad, multi-layered, and rapidly evolving topic &ndash; this introductory series focuses on a common use case (Docker on Linux). The series aims to:</p>
+
+<ul>
+<li>Provide <a href="#background">background on container security</a></li>
+<li>Discuss top container security best practices, roughly organized by level-of-effort to adopt
+
+<ul>
+<li><a href="../containersec-p2">Key risks &amp; best practices</a></li>
+<li><a href="../containersec-p3">Medium-effort best practices</a></li>
+<li><a href="../containersec-p4">Higher-effort best practices</a></li>
+</ul></li>
+<li>Link to other <a href="../containersec-links">container security resources</a></li>
+</ul>
+
+<p>You&rsquo;ll get the most out of this series if you have experience with Docker, Linux, and a background in information security.</p>
+
+<h1 id="background">Container Security Background</h1>
+
+<p>Containers provide lightweight process virtualization, sharing the host&rsquo;s kernel and isolating containers from each other/the container host with:</p>
+
+<ul>
+<li><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html">Cgroups</a> (limit container <em>usage</em> of shared host resources)</li>
+<li><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html">Namespaces</a> (limit container <em>visibility</em> of shared host resources)</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left">Namespace</th>
+<th align="left">Purpose</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">user</td>
+<td align="left">Control container view of the host&rsquo;s users/groups</td>
+</tr>
+
+<tr>
+<td align="left">pid</td>
+<td align="left">Control container view of the host&rsquo;s processes</td>
+</tr>
+
+<tr>
+<td align="left">mnt</td>
+<td align="left">Control container view of the host&rsquo;s mounts/filesystems</td>
+</tr>
+
+<tr>
+<td align="left">net</td>
+<td align="left">Control container view of the host&rsquo;s networking devices and capabilities</td>
+</tr>
+
+<tr>
+<td align="left">ipc</td>
+<td align="left">Control container view of the host&rsquo;s inter-process communication, mainly shared memory blocks</td>
+</tr>
+
+<tr>
+<td align="left">uts</td>
+<td align="left">Control container view of the host&rsquo;s hostname and domain</td>
+</tr>
+
+<tr>
+<td align="left">cgroup</td>
+<td align="left">Control container view of the host&rsquo;s control groups</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p>Other container security mechanisms include:</p>
+
+<ul>
+<li><a href="https://linux.die.net/man/7/capabilities">Kernel capabilities</a> (control container access to groupings of kernel functionality)</li>
+<li><a href="https://docs.docker.com/engine/security/seccomp/">Seccomp</a> (control container access to system calls on the shared kernel)</li>
+<li>Mandatory access control (MAC) systems like <a href="https://selinuxproject.org/page/Main_Page">SELinux</a> and <a href="https://gitlab.com/apparmor/apparmor/wikis/home/">AppArmor</a></li>
+</ul>
+
+<p>Containerization differs substantially from traditional virtualization, where a hypervisor mediates access to the underlying hardware, runs complete guest operating systems (including a kernel per guest OS), and isolates running virtual machines from one another. Because containers share a kernel with the host/other containers, hypervisors provide more robust isolation between virtual machines than container hosts provide between containers.</p>
+
+<p>There are <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3456">examples</a> of <a href="https://www.cvedetails.com/cve/CVE-2016-2077/">hypervisor</a> breakout <a href="https://www.cyberscoop.com/virtualbox-virtual-machine-escape-oracle/">vulnerabilities</a>, though <a href="https://www.cvedetails.com/product/47/Linux-Linux-Kernel.html?vendor_id=33">Linux kernel vulnerabilities</a> are more common (453 in 2017 according to CVE Details). Some kernel vulnerabilities can be abused in the container context.</p>
+
+<p>Unpatched kernel vulnerabilities have been exploited to <a href="https://www.twistlock.com/2017/12/27/escaping-docker-container-using-waitid-cve-2017-5123/">escalate container privileges</a>, and unpatched vulnerabilities in container runtime code can allow <a href="https://blog.aquasec.com/cve-2016-9962-run-container-run">container-to-host directory traversal</a>. Both are consequences of the shared-kernel nature of containers. However, using container isolation and security mechanisms can reduce risk to a threshold that&rsquo;s acceptable for some workloads and organizations.</p>
+
+<p>Did you enjoy this post? Check out the <a href="../containersec-p2">next one</a>, which covers key container risks and best practices.</p>
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://johnroberts.gitlab.io/post/appsec-strategy/" data-toggle="tooltip" data-placement="top" title="AppSec Strategy">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://johnroberts.gitlab.io/post/containersec-p2/" data-toggle="tooltip" data-placement="top" title="Container Security Part II">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dachiefjustice" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/dachiefjustice" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/dachiefjustice" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/johnoroberts" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://johnroberts.gitlab.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://jroberts.io">John Roberts</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          Copyright © 2018 John Roberts
+
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Powered by <a href="http://gohugo.io">Hugo</a> &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://johnroberts.gitlab.io/js/katex.min.js"></script>
+<script src="https://johnroberts.gitlab.io/js/auto-render.min.js"></script>
+<script src="https://johnroberts.gitlab.io/js/jquery.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/bootstrap.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/main.js"></script>
+<script src="https://johnroberts.gitlab.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://johnroberts.gitlab.io/js/photoswipe.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/photoswipe-ui-default.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

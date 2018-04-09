@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Container Security on Blog</title>
+    <link>https://johnroberts.gitlab.io/tags/container-security/</link>
+    <description>Recent content in Container Security on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Apr 2018 22:28:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://johnroberts.gitlab.io/tags/container-security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Container Security Part V</title>
+      <link>https://johnroberts.gitlab.io/post/containersec-links/</link>
+      <pubDate>Mon, 02 Apr 2018 22:28:30 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/containersec-links/</guid>
+      <description>This is the fifth post in a series on container security. Check out the first post for context and links to the rest of the series.
+Want to go deeper on container security? Check out the links below.
+Docker Security Links  Docker&amp;rsquo;s security documentation Docker&amp;rsquo;s security best practices focusing on Docker Enterprise Edition Docker&amp;rsquo;s reference architectures are a collection of reference architectures/design patterns, demonstrating best practices for a variety of use cases Docker seccomp lab GDS Security&amp;rsquo;s Docker Secure Deployment Guidelines, a checklist for securing Docker deployments Docker Bench for Security is a script (and container) that checks Docker deployments against a variety of security best practices  Kubernetes Security Links K8s is a popular container orchestration platform, here are some handy links for securing it.</description>
+    </item>
+    
+    <item>
+      <title>Container Security Part IV</title>
+      <link>https://johnroberts.gitlab.io/post/containersec-p4/</link>
+      <pubDate>Mon, 02 Apr 2018 00:52:32 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/containersec-p4/</guid>
+      <description>This is the fourth post in an intro series on container security. Check out the first post for context and links to the rest of the series.
+This post covers best practices for teams that are willing to invest significant time and resources in securing their containers. These practices may involve substantial trade-offs between development velocity and security.
+Higher-Effort Best Practices Whitelist required system calls per-container with seccomp: protect container hosts and isolate containers from each other by tailoring seccomp security profiles to individual containers.</description>
+    </item>
+    
+    <item>
+      <title>Container Security Part III</title>
+      <link>https://johnroberts.gitlab.io/post/containersec-p3/</link>
+      <pubDate>Mon, 02 Apr 2018 00:52:18 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/containersec-p3/</guid>
+      <description>This is the third post in an intro series on container security. Check out the first post for context and links to the rest of the series.
+This post covers best practices that reduce risk substantially in exchange for decent (but generally manageable) level-of-effort. Of course, this varies with your workload and environment &amp;ndash; consider these practices once you&amp;rsquo;ve got the basics down.
+Medium-Effort Best Practices Restrict required kernel capabilities per-container: move beyond the binary root/non-root privilege model by selectively granting individual containers access to the kernel capabilities they need with the --cap-add and --cap-drop flags for docker run.</description>
+    </item>
+    
+    <item>
+      <title>Container Security Part II</title>
+      <link>https://johnroberts.gitlab.io/post/containersec-p2/</link>
+      <pubDate>Mon, 02 Apr 2018 00:52:06 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/containersec-p2/</guid>
+      <description>This is the second post in an intro series on container security. Check out the first post for context and links to the rest of the series.
+This post covers key container risks and best practices, focusing on techniques that reduce risk substantially for the least engineering effort. It&amp;rsquo;s a good starting point for securing your container workloads.
+Privilege Risks &amp;amp; Best Practices The Docker daemon runs as root. By default, Docker containers run as root, and containers running as root are common in practice.</description>
+    </item>
+    
+    <item>
+      <title>Container Security Part I</title>
+      <link>https://johnroberts.gitlab.io/post/containersec-background/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://johnroberts.gitlab.io/post/containersec-background/</guid>
+      <description>Containerization has exploded in popularity across the tech scene in recent years, driven by Docker and container orchestration platforms like Kubernetes. Containers are a natural fit for microservice-based applications and for CI/CD² pipeline tasks. They power event-driven function-as-a-service (&amp;ldquo;serverless&amp;rdquo;) platforms like AWS Lambda and Apache OpenWhisk.
+Containerization offers substantial benefits, much discussed across the tech world. Avoiding vendor lock-in, environment consistency, application portability, rapid deployment/scaling, deployment density &amp;ndash; a range of business and technical benefits is likely to drive continued adoption.</description>
+    </item>
+    
+  </channel>
+</rss>

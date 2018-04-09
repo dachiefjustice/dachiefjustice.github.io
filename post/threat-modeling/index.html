@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>AppSec Threat Modeling</title>
+  <meta property="og:title" content="AppSec Threat Modeling" />
+  <meta name="twitter:title" content="AppSec Threat Modeling" />
+  <meta name="description" content="30,000 Foot View">
+  <meta property="og:description" content="30,000 Foot View">
+  <meta name="twitter:description" content="30,000 Foot View">
+  <meta name="author" content="John Roberts"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@dachiefjustice" />
+  <meta name="twitter:creator" content="@dachiefjustice" />
+  <meta property="og:url" content="https://johnroberts.gitlab.io/post/threat-modeling/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blog" />
+
+  <meta name="generator" content="Hugo 0.37.1" />
+  <link rel="canonical" href="https://johnroberts.gitlab.io/post/threat-modeling/" />
+  <link rel="alternate" href="https://johnroberts.gitlab.io/index.xml" type="application/rss+xml" title="Blog">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/katex.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://johnroberts.gitlab.io/css/highlight.min.css" /><link rel="stylesheet" href="https://johnroberts.gitlab.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://johnroberts.gitlab.io/css/photoswipe.min.css">
+<link rel="stylesheet" href="https://johnroberts.gitlab.io/css/default-skin.min.css">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-117120619-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://johnroberts.gitlab.io/">Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Writing" href="/post">Writing</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Bio" href="/bio">Bio</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="ArctaSec" href="https://arctasec.com">ArctaSec</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>AppSec Threat Modeling</h1>
+                
+                  
+                    <h2 class="post-subheading">30,000 Foot View</h2>
+                  
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 6, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 5 minutes (938 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<p><a href="https://www.owasp.org/index.php/Category:Threat_Modeling">Threat modeling</a> underpins risk-based application security. What is threat modeling? According to <a href="https://searchsecurity.techtarget.com/definition/threat-modeling">TechTarget</a>:</p>
+
+<blockquote>
+<p>Threat modeling is a procedure for optimizing network security by identifying objectives and vulnerabilities, and then defining countermeasures to prevent, or mitigate the effects of, threats to the system.</p>
+</blockquote>
+
+<p>That definition emphasizes network security. The concept applies to other kinds of security &ndash; application, infrastructure, physical, etc.</p>
+
+<p>Why does threat modeling matter? It grounds security in technical and business risk. Without threat modeling (or something similar by another name), security is guesswork based on intuition.</p>
+
+<p>This post explores application security threat modeling from the 30,000 foot view &ndash; <a href="#purpose">what</a> it is, <a href="#process">how</a> to do it, how it <a href="#strategy">guides strategy</a>, and some <a href="#pitfalls">common pitfalls</a>.</p>
+
+<h1 id="purpose">Purpose</h1>
+
+<p>Threat modeling helps answer these questions:</p>
+
+<ul>
+<li>How should a system function?</li>
+<li>How might that system fail?</li>
+<li>What should be done about these failure cases?</li>
+</ul>
+
+<p>In a nutshell, threat modeling is structured thinking about system design, failures, and failure mitigations.</p>
+
+<h1 id="process">Process</h1>
+
+<p>Details vary, but application threat modeling looks something like this:</p>
+
+<ol>
+<li><strong>Decompose visually</strong>: understand the application&rsquo;s business goals, design, and tech stack. Speak with a cross-section of stakeholders to gain business and technical perspective &ndash; project managers, application owners, developers, engineers, architects, system/network administrators. Study design docs, data flow/UML/architecture diagrams, API references, or anything else describing the application. Create a security-focused diagram (or diagrams) including:
+
+<ul>
+<li>Components</li>
+<li>Data flows</li>
+<li>Assets (things of value to attackers)</li>
+<li>Security controls (things protecting assets)</li>
+<li>Trust boundaries (Internet to app server, app server to database, first-party code calling a third-party API, etc.)</li>
+</ul></li>
+<li><strong>Identify threats</strong>: think systematically about how to attack the application component-by-component, accounting for tech stack and business goals. Brainstorm potential threats (people or code that can damage assets). Overlay potential threats visually, and put them in a table.</li>
+<li><strong>Identify mitigations</strong>: rank each potential threat, and decide what to do about it.
+
+<ul>
+<li>Some threats aren&rsquo;t protected against. Apply technical/physical/procedural controls, or accept/transfer the risk.</li>
+<li>Some threats will be partially or fully mitigated by existing controls.</li>
+<li>Some threats may pose negligible risk or be unrealistic. That&rsquo;s fine, it&rsquo;s part of the process.</li>
+</ul></li>
+</ol>
+
+<p>Effective threat modeling:</p>
+
+<ul>
+<li>Is led by someone experienced</li>
+<li>Encourages adversarial (and defensive) thinking about applications/systems</li>
+<li>Accounts for business goals and risks</li>
+<li>Accounts for the tech stack</li>
+<li>Informs security strategy</li>
+</ul>
+
+<h1 id="strategy">Guiding Strategy</h1>
+
+<p>Threat modeling an application yields information about technical and business risk. Use this to influence application security strategy &ndash; resource allocation decisions, control selection, application design, test cases, automation efforts, etc.</p>
+
+<p>Some examples of how to guide action from threat modeling:</p>
+
+<ul>
+<li>Architecture diagrams show an Internet-facing application, handling customer data, using a database. Conversations with the developers suggest incomplete awareness of SQL injection prevention techniques.
+
+<ul>
+<li>Perform a code review focused on parts of the application that issue database queries to find instances of SQL injection</li>
+<li>Review application server or <a href="https://www.owasp.org/index.php/Web_Application_Firewall">WAF</a> logs for possible SQL injection attacks</li>
+<li>Integrate <a href="http://sqlmap.org/"><code>sqlmap</code></a> into application testing</li>
+<li>Train developers on parameterized queries for the languages/web frameworks they use</li>
+</ul></li>
+<li>Design docs show that a third-party payment processor handles customer orders. Conversations with the application owner indicate this payment processor handles a significant portion of revenue. API keys authenticate the application to the payment provider. There&rsquo;s no audit trail for the API keys, and conversations with engineers suggest that secret spawl across Slack, developer machines, and production may be an issue. You might respond by:
+
+<ul>
+<li>Finding and rotating exposed API keys</li>
+<li>Layering additional controls for authenticating to the payment processor; e.g. IP whitelisting, client certificate authentication, &hellip;</li>
+<li>Selecting and rolling out a secrets management tool that meets security requirements (e.g. audit trail, rotation, etc.)</li>
+<li>Training your engineers on proper secrets management &ndash; API keys, SSL certificates, passwords, tokens, etc.</li>
+</ul></li>
+<li>There&rsquo;s no procedure in place to update application libraries/dependencies. As a result, the application may be running vulnerable library versions.
+
+<ul>
+<li>Verify library versions, determine if any security-critical updates have been released, and update if necessary</li>
+<li>Subscribe to library/dependency mailing lists for future updates</li>
+<li>Add build-time tooling/scripting to flag outdated dependencies</li>
+<li>Automate dependency updates during builds, run regression tests to avoid breakage</li>
+</ul></li>
+</ul>
+
+<h1 id="pitfalls">Pitfalls</h1>
+
+<p>Here are some common application threat modeling mistakes, and how to avoid them.</p>
+
+<ul>
+<li><strong>Starting too late</strong>: the right time to threat model is early-SDLC, during design. Starting early means fixing defects when it&rsquo;s cheapest, before they&rsquo;re baked into code, tested, or released.</li>
+<li><strong>Over-scoping</strong>: systems have complex interactions. When you&rsquo;re threat modeling an application, focus on the application components and their interactions. In reality, the app servers might rely on Active Directory, run on AWS EC2, and use components from a global software and hardware supply chain. All of this affects risk, but time constraints require a narrow focus. Address concerns outside the application tier in separate threat models.</li>
+<li><strong>Lack of structure</strong>: you might miss important threats without a systematic approach. Think through how an application might be attacked, component-by-component. An approach like <a href="https://www.owasp.org/index.php/Application_Threat_Modeling#STRIDE">STRIDE</a>, <a href="https://www.owasp.org/index.php/Application_Threat_Modeling#DREAD">DREAD</a>, or <a href="https://capec.mitre.org/">CAPEC</a> can help.</li>
+<li><strong>No golden path</strong>: there&rsquo;s no single &ldquo;right way&rdquo; to threat model. <a href="https://www.schneier.com/academic/archives/1999/12/attack_trees.html">Attack trees</a> can be comprehensive (but time-intensive). STRIDE can work for security people, but it&rsquo;s prone to overlapping/unclear threat classifications. CAPEC might work best for system/network administrators. Perhaps your own method is preferable &ndash; choose the right tool for the people at the table and the project at hand.</li>
+<li><strong>Overreliance</strong>: threat modeling finds potential defects and design flaws, rather than exploitable vulnerabilities (as a penetration test or code review finds). It&rsquo;s a complement for other application security activities, not a substitute.</li>
+<li><strong>Not using the results</strong>: threat modeling clarifies your attack surface, controls, and risk. This is a chapter in a longer story. Use the results to inform other activities: application design, control selection, test cases, developer training, resource allocation, purchasing decisions, automation, &hellip;</li>
+</ul>
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://johnroberts.gitlab.io/post/containersec-links/" data-toggle="tooltip" data-placement="top" title="Container Security Part V">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dachiefjustice" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/dachiefjustice" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/dachiefjustice" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/johnoroberts" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://johnroberts.gitlab.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://jroberts.io">John Roberts</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          Copyright © 2018 John Roberts
+
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Powered by <a href="http://gohugo.io">Hugo</a> &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://johnroberts.gitlab.io/js/katex.min.js"></script>
+<script src="https://johnroberts.gitlab.io/js/auto-render.min.js"></script>
+<script src="https://johnroberts.gitlab.io/js/jquery.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/bootstrap.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/main.js"></script>
+<script src="https://johnroberts.gitlab.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://johnroberts.gitlab.io/js/photoswipe.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/photoswipe-ui-default.min.js"</script>
+<script src="https://johnroberts.gitlab.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
