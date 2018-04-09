@@ -5,22 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Container Security Part II</title>
-  <meta property="og:title" content="Container Security Part II" />
-  <meta name="twitter:title" content="Container Security Part II" />
-  <meta name="description" content="Key Best Practices">
-  <meta property="og:description" content="Key Best Practices">
-  <meta name="twitter:description" content="Key Best Practices">
+  <title>Flow Music</title>
+  <meta property="og:title" content="Flow Music" />
+  <meta name="twitter:title" content="Flow Music" />
+  <meta name="description" content="What helps you get &ldquo;in the zone&rdquo; or into a &ldquo;flow state&rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&rsquo;ll find something you like.
+Thanks to a musical upbringing, my tastes are all over the place. Quoting the great Duke Ellington:
+ There are two kinds of music. Good music, and the other kind.
+ Genre doesn&rsquo;t matter, so long as the music&rsquo;s good!">
+  <meta property="og:description" content="What helps you get &ldquo;in the zone&rdquo; or into a &ldquo;flow state&rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&rsquo;ll find something you like.
+Thanks to a musical upbringing, my tastes are all over the place. Quoting the great Duke Ellington:
+ There are two kinds of music. Good music, and the other kind.
+ Genre doesn&rsquo;t matter, so long as the music&rsquo;s good!">
+  <meta name="twitter:description" content="What helps you get &ldquo;in the zone&rdquo; or into a &ldquo;flow state&rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&rsquo;ll find something you like. …">
   <meta name="author" content="John Roberts"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@dachiefjustice" />
   <meta name="twitter:creator" content="@dachiefjustice" />
-  <meta property="og:url" content="https://jroberts.io/post/containersec-p2/" />
+  <meta property="og:url" content="https://jroberts.io/post/flow-music/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Blog" />
 
   <meta name="generator" content="Hugo 0.37.1" />
-  <link rel="canonical" href="https://jroberts.io/post/containersec-p2/" />
+  <link rel="canonical" href="https://jroberts.io/post/flow-music/" />
   <link rel="alternate" href="https://jroberts.io/index.xml" type="application/rss+xml" title="Blog">
   <link rel="stylesheet" href="https://jroberts.io/css/katex.min.css">
   <link rel="stylesheet" href="https://jroberts.io/css/font-awesome.min.css">
@@ -173,21 +179,17 @@ ga('send', 'pageview');
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>Container Security Part II</h1>
-                
-                  
-                    <h2 class="post-subheading">Key Best Practices</h2>
-                  
+              <h1>Flow Music</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 2, 2018
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 31, 2018
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (607 words)
+  <i class="fa fa-clock-o"></i> 1 minutes (153 words)
   
   
 </span>
@@ -209,45 +211,42 @@ ga('send', 'pageview');
       <article role="main" class="blog-post">
         
 
-<p>This is the second post in an intro series on container security. Check out the <a href="../containersec-background">first post</a> for context and links to the rest of the series.</p>
+<p>What helps you get &ldquo;in the zone&rdquo; or into a &ldquo;flow state&rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&rsquo;ll find something you like.</p>
 
-<p>This post covers key container risks and best practices, focusing on techniques that reduce risk substantially for the least engineering effort. It&rsquo;s a good starting point for securing your container workloads.</p>
+<p>Thanks to a musical upbringing, my tastes are all over the place. Quoting the great <a href="http://jazz-quotes.com/artist/duke-ellington/#quote-1058">Duke Ellington</a>:</p>
 
-<h1 id="privilege-risks-best-practices">Privilege Risks &amp; Best Practices</h1>
+<blockquote>
+<p>There are two kinds of music. Good music, and the other kind.</p>
+</blockquote>
 
-<p>The Docker daemon runs as root. By default, Docker containers run as root, and containers running as root are common in practice. Running containers as root violates <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">least-privilege</a> and makes it easier for an attacker to escalate privileges after compromising a container (say, via a OS command injection or remote code execution vulnerability in a containerized web app). Here are some ways to mitigate container privilege-related risk:</p>
+<p>Genre doesn&rsquo;t matter, so long as the music&rsquo;s good! I find lyrics distracting when I&rsquo;m focusing, so this post is mostly instrumentals.</p>
 
-<ul>
-<li><p><strong>Avoid root containers where possible</strong> to raise attacker cost. If an attacker gets shell access to a container running as a non-root user, their privileges are limited and achieving container breakout is harder than in a container running as root. Many container workloads only need root privileges at build time (e.g. for package installation/configuration), and don&rsquo;t need root privileges in normal operation. To achieve this:</p>
-
-<ol>
-<li>In your <code>Dockerfile</code>, first perform any actions that require root privileges (e.g. installing packages, configuring system-wide software).</li>
-<li>Next, create an unprivileged user/group with the <code>RUN</code> instruction and your container&rsquo;s user/group management utilities (e.g. <code>addgroup</code> and <code>adduser</code>).</li>
-<li>Become the user you created with the <code>USER</code> instruction. Subsequent <code>RUN</code>, <code>CMD</code>, and <code>ENTRYPOINT</code> instructions in the <code>Dockerfile</code> will execute as the unprivileged user.</li>
-</ol></li>
-
-<li><p><strong>Avoid the <code>--privileged</code> flag</strong>: <code>docker run --privileged</code> grants the container unrestricted access to all devices on the host, bypassing otherwise-configured (depending on the environment) cgroup, AppArmor, or SELinux restrictions.</p></li>
-
-<li><p><strong>Minimize membership in the <code>docker</code> group</strong>, especially for production. User accounts in the <code>docker</code> group can control the Docker daemon without <code>su</code> or <code>sudo</code>, but membership in this group gives full control over the container host filesystem. This is because the Docker daemon runs as root, and <code>docker</code> group members can launch containers that mount <code>/</code> on the host filesystem read/write within the container.</p></li>
-</ul>
-
-<h1 id="other-best-practices">Other Best Practices</h1>
-
-<p><strong>Don&rsquo;t mount the Docker socket into containers</strong>: access to the Docker socket (<code>/var/run/docker.sock</code> by default) provides full control over the Docker engine, and is essentially equivalent to root access on the host (assuming no <a href="https://docs.docker.com/engine/extend/plugins_authorization/">authorization plugin</a> is used, which is the default). If an attacker controls a container, a mounted Docker socket presents a trivial path to escalate privileges to the container host.</p>
-
-<p><strong>Verify authenticity during package installation</strong>: when installing software via <code>Dockerfile</code>, validate its authenticity.</p>
+<h1 id="jazz">Jazz</h1>
 
 <ul>
-<li>Import GPG keys before installing packages from third-party repositories.</li>
-<li>Use HTTPS (rather than HTTP or other plaintext protocols) when directly downloading software packages via tools like <code>curl</code> or <code>wget</code></li>
-<li>For static directly-downloaded files/packages, consider pinning checksums via a <code>RUN</code> instruction with a command like <code>sha512sum</code>. If you&rsquo;re fetching checksums from an upstream source, use a secure channel like HTTPS. <code>RUN</code> instructions that return a non-zero exit status (i.e. after a failed checksum verification) will break the container build, indicating a (potentially malicious) change to the checksummed file or package.</li>
+<li><a href="https://open.spotify.com/album/59AeaIeAx6S2igYJFjltRE?si=kBkCf95LTY-enAtQW4f4Zw">Mockroot</a> from <a href="http://www.tigranhamasyan.com/">Tigran Hamasyan</a></li>
+<li><a href="https://open.spotify.com/track/4poqkR2kOwWy9kKm8wmdUd?si=mAfBoKIZT8u1fsod-F9w5Q">Seven Seas</a> from <a href="http://avishaicohen.com/">Avishai Cohen</a> (the whole album, especially the title track)</li>
+<li><a href="https://open.spotify.com/album/2A2yMqa2ytJOQ9H16Hek1I?si=idf6wEhQSVevcykNK0UEjQ">Breakthrough</a> from <a href="http://www.eldarmusic.com/">Eldar Djangirov</a>, especially <a href="https://open.spotify.com/track/4ciU6L4XImCpCI6W67D0H1?si=YDsL96x1ShWAVZLKGW19jA">Point of View Redux</a></li>
 </ul>
 
-<p><strong>Protect container hosts and running containers against denial-of-service</strong> by enforcing cgroup-based resource constraints for shared host resources (CPU, RAM, and block IO). By default, Docker does not enforce such restrictions &ndash; tuning cgroups is particularly important in production.</p>
+<h1 id="electronic">Electronic</h1>
 
-<p><strong>Favor minimal container base images</strong> such as Alpine to reduce attack surface (fewer lines of code, fewer bugs and vulnerabilities). Minimal container base images also reduce bandwidth and storage requirements, as well as container build/deployment times.</p>
+<ul>
+<li><a href="https://levelmusicmaxo.bandcamp.com/album/level-music-best">Level Music Best</a> from <a href="https://maxoisnuts.bandcamp.com/">Maxo</a></li>
+<li><a href="https://zwmusic.bandcamp.com/album/snesque">SNESQUE</a> from <a href="www.zackerywilson.com/">Zackery Wilson</a></li>
+<li><a href="https://soundcloud.com/soundisstyle/madeon-triple-j-mix-up-03-09">Triple J mix</a> from <a href="http://www.madeon.fr/">Madeon</a></li>
+</ul>
 
-<p>Did you enjoy this post? Check out the <a href="../containersec-p3">next one</a>, which covers more container security best practices.</p>
+<h1 id="other">Other</h1>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=qGW4nrsZJ3o">Joy</a> from <a href="https://en.wikipedia.org/wiki/Shakti_(band)">Shakti</a></li>
+<li><a href="https://open.spotify.com/album/3BfAgyF1AdYKaOO7EBoDw4">Joy of Motion</a> from <a href="http://www.animalsasleaders.org/">Animals as Leaders</a></li>
+<li><a href="https://open.spotify.com/album/75z31r1se3YTcaPwmFJtp7?si=wNrY7eUAQs2oOFhbstRWlQ">U.K.</a> from <a href="https://en.wikipedia.org/wiki/U.K._(band)">U.K.</a></li>
+<li><a href="https://open.spotify.com/album/3cvjMNWg7t46NyDZzujfNg?si=KBPdrq3SQdKSeh5qAYSQGQ">Bach Cello Suites</a> performed by <a href="http://www.yo-yoma.com/">Yo-Yo Ma</a></li>
+</ul>
+
+<p>Dig the music? Support the artists, buy their stuff!</p>
 
         
       </article>
@@ -256,12 +255,12 @@ ga('send', 'pageview');
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://jroberts.io/post/flow-music/" data-toggle="tooltip" data-placement="top" title="Flow Music">&larr; Previous Post</a>
+              <a href="https://jroberts.io/post/containersec-background/" data-toggle="tooltip" data-placement="top" title="Container Security Part I">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://jroberts.io/post/containersec-p3/" data-toggle="tooltip" data-placement="top" title="Container Security Part III">Next Post &rarr;</a>
+              <a href="https://jroberts.io/post/containersec-p2/" data-toggle="tooltip" data-placement="top" title="Container Security Part II">Next Post &rarr;</a>
             </li>
           
         </ul>
