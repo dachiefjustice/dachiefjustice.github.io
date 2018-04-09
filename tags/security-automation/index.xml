@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security Automation on Blog</title>
-    <link>https://johnroberts.gitlab.io/tags/security-automation/</link>
+    <link>https://dachiefjustice.github.io/tags/security-automation/</link>
     <description>Recent content in Security Automation on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 12 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://johnroberts.gitlab.io/tags/security-automation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dachiefjustice.github.io/tags/security-automation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AppSec Strategy</title>
-      <link>https://johnroberts.gitlab.io/post/appsec-strategy/</link>
+      <link>https://dachiefjustice.github.io/post/appsec-strategy/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://johnroberts.gitlab.io/post/appsec-strategy/</guid>
+      <guid>https://dachiefjustice.github.io/post/appsec-strategy/</guid>
       <description>Application security teams face a daunting challenge: finding and fixing security issues across their application portfolio, based on risk. Application portfolios tend to grow over time through acquisitions, partnerships, and in response to evolving business needs. New app development, COTS app deployment, and SaaS app/service adoption also expand the portfolio.
 Manual security efforts such as penetration testing, code review, and design analysis are a great start, but scale poorly across large application portfolios.</description>
     </item>

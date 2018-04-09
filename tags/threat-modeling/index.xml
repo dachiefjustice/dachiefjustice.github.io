@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Threat Modeling on Blog</title>
-    <link>https://johnroberts.gitlab.io/tags/threat-modeling/</link>
+    <link>https://dachiefjustice.github.io/tags/threat-modeling/</link>
     <description>Recent content in Threat Modeling on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 06 Apr 2018 00:36:10 +0000</lastBuildDate>
     
-	<atom:link href="https://johnroberts.gitlab.io/tags/threat-modeling/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dachiefjustice.github.io/tags/threat-modeling/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AppSec Threat Modeling</title>
-      <link>https://johnroberts.gitlab.io/post/threat-modeling/</link>
+      <link>https://dachiefjustice.github.io/post/threat-modeling/</link>
       <pubDate>Fri, 06 Apr 2018 00:36:10 +0000</pubDate>
       
-      <guid>https://johnroberts.gitlab.io/post/threat-modeling/</guid>
+      <guid>https://dachiefjustice.github.io/post/threat-modeling/</guid>
       <description>Threat modeling underpins risk-based application security. What is threat modeling? According to TechTarget:
  Threat modeling is a procedure for optimizing network security by identifying objectives and vulnerabilities, and then defining countermeasures to prevent, or mitigate the effects of, threats to the system.
  That definition emphasizes network security. The concept applies to other kinds of security &amp;ndash; application, infrastructure, physical, etc.
