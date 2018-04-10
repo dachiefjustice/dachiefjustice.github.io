@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Music on Blog</title>
+    <link>https://jroberts.io/tags/music/</link>
+    <description>Recent content in Music on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 20 Mar 2018 21:33:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://jroberts.io/tags/music/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flow Music</title>
+      <link>https://jroberts.io/post/flow-music/</link>
+      <pubDate>Tue, 20 Mar 2018 21:33:15 +0000</pubDate>
+      
+      <guid>https://jroberts.io/post/flow-music/</guid>
+      <description>What helps you get &amp;ldquo;in the zone&amp;rdquo; or into a &amp;ldquo;flow state&amp;rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&amp;rsquo;ll find something you like.
+Thanks to a musical upbringing, my tastes are all over the place. Quoting the great Duke Ellington:
+ There are two kinds of music. Good music, and the other kind.
+ Genre doesn&amp;rsquo;t matter, so long as the music&amp;rsquo;s good!</description>
+    </item>
+    
+  </channel>
+</rss>
