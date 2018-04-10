@@ -67,18 +67,6 @@ Privilege Risks &amp;amp; Best Practices The Docker daemon runs as root. By defa
     </item>
     
     <item>
-      <title>Flow Music</title>
-      <link>https://jroberts.io/post/flow-music/</link>
-      <pubDate>Sat, 31 Mar 2018 21:33:15 +0000</pubDate>
-      
-      <guid>https://jroberts.io/post/flow-music/</guid>
-      <description>What helps you get &amp;ldquo;in the zone&amp;rdquo; or into a &amp;ldquo;flow state&amp;rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&amp;rsquo;ll find something you like.
-Thanks to a musical upbringing, my tastes are all over the place. Quoting the great Duke Ellington:
- There are two kinds of music. Good music, and the other kind.
- Genre doesn&amp;rsquo;t matter, so long as the music&amp;rsquo;s good!</description>
-    </item>
-    
-    <item>
       <title>Bio</title>
       <link>https://jroberts.io/bio/</link>
       <pubDate>Mon, 26 Mar 2018 16:27:06 +0000</pubDate>
@@ -97,6 +85,18 @@ Before ArctaSec, I was a security consultant with Cigital (a software security f
       <guid>https://jroberts.io/post/containersec-background/</guid>
       <description>Containerization has exploded in popularity across the tech scene in recent years, driven by Docker and container orchestration platforms like Kubernetes. Containers are a natural fit for microservice-based applications and for CI/CD² pipeline tasks. They power event-driven function-as-a-service (&amp;ldquo;serverless&amp;rdquo;) platforms like AWS Lambda and Apache OpenWhisk.
 Containerization offers substantial benefits, much discussed across the tech world. Avoiding vendor lock-in, environment consistency, application portability, rapid deployment/scaling, deployment density &amp;ndash; a range of business and technical benefits is likely to drive continued adoption.</description>
+    </item>
+    
+    <item>
+      <title>Flow Music</title>
+      <link>https://jroberts.io/post/flow-music/</link>
+      <pubDate>Tue, 20 Mar 2018 21:33:15 +0000</pubDate>
+      
+      <guid>https://jroberts.io/post/flow-music/</guid>
+      <description>What helps you get &amp;ldquo;in the zone&amp;rdquo; or into a &amp;ldquo;flow state&amp;rdquo;? Music does! This post links to some of my favorite music for concentration, maybe you&amp;rsquo;ll find something you like.
+Thanks to a musical upbringing, my tastes are all over the place. Quoting the great Duke Ellington:
+ There are two kinds of music. Good music, and the other kind.
+ Genre doesn&amp;rsquo;t matter, so long as the music&amp;rsquo;s good!</description>
     </item>
     
     <item>
