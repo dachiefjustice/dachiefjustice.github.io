@@ -72,9 +72,9 @@ Privilege Risks &amp;amp; Best Practices The Docker daemon runs as root. By defa
       <pubDate>Mon, 26 Mar 2018 16:27:06 +0000</pubDate>
       
       <guid>https://jroberts.io/bio/</guid>
-      <description>Hi there! My name&amp;rsquo;s John Roberts, I run Arcta Security where I help clients secure their AWS environments and web applications. You can find me @DaChiefJustice, on GitHub, or on LinkedIn.
-Before ArctaSec, I was a security consultant with Cigital (a software security firm acquired by Synopsys). Some highlights of my work:
- Led, scoped, and delivered web app/API penetration testing, network penetration testing, design/architecture analysis, and red team engagements Designed &amp;amp; delivered a service to analyze the security of client AWS environments, built it into a repeatable service offering, and trained other consultants on delivery Led creation and delivery of a workshop for DevOps and security teams (focused on AWS, Docker, and infrastructure-as-code security)  Before Cigital, I worked as a network and systems administrator at a startup.</description>
+      <description>Hi there! My name&amp;rsquo;s John Roberts, you can find me on GitHub or LinkedIn, or drop me an email.
+I help secure AWS environments and web applications. I&amp;rsquo;ve worked as a security consultant with Cigital (a software security firm acquired by Synopsys). Some highlights of my work:
+ Led, scoped, and delivered web app/API penetration testing, network penetration testing, design/architecture analysis, and red teaming projects Designed &amp;amp; delivered a service to analyze the security of client AWS environments, built it into a repeatable service offering, and trained other consultants on delivery Led creation and delivery of a training workshop for DevOps and security teams (focused on AWS, Docker, and infrastructure-as-code security)  Before Cigital, I worked as a network and systems administrator at a startup.</description>
     </item>
     
     <item>
